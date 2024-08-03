@@ -1,0 +1,26 @@
+create table tasks(task_id int primary key, name varchar(50));
+
+insert into tasks(task_id,name) values (1,"states"),(2,"routing"),(3,"redux");
+
+describe tasks;
+
+create table mentors(mentor_id int primary key, name varchar(50),email varchar(50), batch_id int,task_id int,
+                     foreign Key(task_id) references tasks(task_id));
+                     
+insert into mentors(mentor_id,name,email,batch_id,task_id) values
+                     (1,'Michael Wilson','michael.wilson@example.com','1',1),
+                     (2,'Paul Smith','paul.smith@example.com','2',2),
+                     (3,'Emily Davis','emily.davis@example.com','3',3);
+                     
+describe mentors;
+
+create table learners(learner_id int primary key, name varchar(50), email varchar(50), batch_id int, mentor_id int, task_id int,
+                      foreign key(mentor_id) references mentors(mentor_id),
+                      foreign Key(task_id) references tasks(task_id));
+                      
+insert into learners(learner_id,name,email,batch_id,mentor_id,task_id) values
+                     (1,'john','john@gmail.com',1,1,1),
+                     (2,'doe','doe@gmail.com',2,2,2),
+                     (3,'bob','bob@gamil.com',3,3,3);
+                     
+describe learners;
